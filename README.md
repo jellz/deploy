@@ -1,3 +1,5 @@
+# deploy
+
 This is a deploy server written in Go that makes deploying projects simple.
 
 ### How does it work?
