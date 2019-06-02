@@ -3,7 +3,7 @@
 This is a deploy server written in Go that makes deploying projects simple.
 
 ### How does it work?
-This uses webhooks to know when a change has been made to a project. Once the server is notified by the webhook, it will pull the latest code from the repository (e.g. GitHub).
+This uses webhooks to know when a change has been made to a project. Once the server is notified by the webhook, it will pull the latest code from the repository (e.g. GitHub). This deploy server also allows users to configure a list of Bash commands to be executed post-pull. More information can be found in the `projects.json.example` file.
 
 ### Installation + Usage
 - Get the **[latest release](https://github.com/jellz/deploy/releases/latest)**.
