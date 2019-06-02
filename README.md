@@ -11,4 +11,4 @@ This uses webhooks to know when a change has been made to a project. Once the se
 - Fill `projects.json.example` with your projects and rename the file to `projects.json`.
 - Run the binary. It is a good idea to run it with GNU Screen or tmux so it keeps running even after you exit the terminal.
 
-**It is important to note this only works on Linux at the moment.**
+**It is important to note this has only been tested on Linux, there is no guarantee it will work on other operating systems.**
