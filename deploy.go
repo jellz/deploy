@@ -14,6 +14,7 @@ import (
 )
 
 func main() {
+	// log.Printf("%v", getProjects())
 	log.Print(os.Getenv("WEBHOOK_SECRET"))
 	log.Print("Listening on port ", os.Getenv("PORT"))
 	if err := http.ListenAndServe(":" + os.Getenv("PORT"), HandleWebhooks(os.Getenv("WEBHOOK_SECRET"))); err != nil {
@@ -46,7 +47,20 @@ func HandleWebhooks(secret string) http.Handler {
 					}
 					log.Printf("[%s] Pulled", p.Repo)
 
-					log.Printf("[%s] Pulled latest code", p.Repo)
+					if p.Commands != nil {
+						for _, c := range p.Commands {
+							log.Println(c)
+							args := strings.Split(c, " ")
+							cmd := exec.Command(args[0], args[1:]...)
+							cmd.Dir = p.Directory
+							err := cmd.Run()
+							if err != nil {
+								log.Printf("[%s] Error running custom command: %s", p.Repo, err)
+							}
+						}
+					}
+
+					log.Printf("[%s] Pulled latest code and executed commands", p.Repo)
 				}
 			}
 			
@@ -70,4 +84,5 @@ func getProjects() []Project {
 type Project struct {
 	Repo      string `json:"repo"`
 	Directory string `json:"directory"`
+	Commands	[]string `json:"commands,omitempty"`
 }

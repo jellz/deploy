@@ -5,6 +5,7 @@
   },
   {
     "repo": "jellz/test2",
-    "directory": "/home/dan/Projects/test2"
+    "directory": "/home/dan/Projects/test2",
+    "commands": "pm2 restart myapp"
   }
 ]
